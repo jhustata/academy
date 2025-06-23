@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ubuntu Spiral+</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: radial-gradient(circle, #1a0f0a, #0f0506);
+      font-family: 'Inter', sans-serif;
+      color: #f4e6d7;
+      overflow: hidden;
+    }
+    canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .centerpiece {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      animation: fadeIn 3s ease-out;
+    }
+    .centerpiece h1 {
+      font-size: 2rem;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+    .centerpiece p {
+      font-style: italic;
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .invoke-btn {
+      margin-top: 2rem;
+      padding: 12px 24px;
+      background: rgba(160, 82, 45, 0.9);
+      border: 2px solid #ffd700;
+      border-radius: 25px;
+      color: #f4e6d7;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .invoke-btn:hover {
+      background: rgba(255, 215, 0, 0.8);
+      color: #1a0f0a;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="spiralCanvas"></canvas>
+  <div class="centerpiece">
+    <h1>Ubuntu Spiral+</h1>
+    <p>"I am because we are, and since we are, therefore I am"</p>
+    <button class="invoke-btn" onclick="speakUbuntu()">Invoke Ubuntu</button>
+  </div>
+  <audio id="ambience" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/02/17/audio_e80f8ef938.mp3?filename=ethereal-space-ambient-111195.mp3" type="audio/mp3">
+  </audio>
+  <script>
+    const canvas = document.getElementById('spiralCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    let angle = 0, radius = 0, hue = 30;
+
+    function drawSpiral() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.save();
+      ctx.translate(width / 2, height / 2);
+      for (let i = 0; i < 720; i++) {
+        const rad = 0.3 * i;
+        const x = rad * Math.cos(0.1 * i);
+        const y = rad * Math.sin(0.1 * i);
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = `hsl(${(hue + i) % 360}, 80%, 60%)`;
+        ctx.fill();
+      }
+      ctx.restore();
+      hue += 0.5;
+      requestAnimationFrame(drawSpiral);
+    }
+
+    drawSpiral();
+
+    function speakUbuntu() {
+      const utterance = new SpeechSynthesisUtterance("I am because we are, and since we are, therefore I am");
+      utterance.pitch = 1;
+      utterance.rate = 0.9;
+      utterance.lang = 'en-US';
+      speechSynthesis.speak(utterance);
+      document.getElementById('ambience').play();
+    }
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
+

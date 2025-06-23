@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ukubona Spiral with isiZulu Audio</title>
+  <style>
+    body {
+      background: #0f0506;
+      color: #f4e6d7;
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .spiral-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .node {
+      background: radial-gradient(circle, rgba(255,215,0,0.3), rgba(139,69,19,0.8));
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255,215,0,0.3);
+    }
+    .caption {
+      margin-top: 20px;
+      font-size: 1rem;
+      font-style: italic;
+    }
+    #subtitle {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #ffd700;
+    }
+    .mute-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      color: #ffd700;
+      border: 1px solid #ffd700;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="spiral-container">
+  <button class="mute-toggle" onclick="toggleAmbient()">🔇 Ambient</button>
+  <div class="node" onclick="playLayer('ukuvula')">🌊 Ukuvula</div>
+  <div class="node" onclick="playLayer('ukuzula')">❤️ Ukuzula</div>
+  <div class="node" onclick="playLayer('ukusoma')">🌀 Ukusoma</div>
+  <div class="node" onclick="playLayer('ukubona')">🐬 Ukubona</div>
+  <div class="node" onclick="playLayer('ukuvela')">🔁 Ukuvela</div>
+  <div class="caption">
+    <div id="subtitle">Khetha isigaba ukuze ulalele.</div>
+  </div>
+</div>
+
+<script>
+  const audioLayers = {
+    ukuvula: {
+      text: "Ukuvula – Opening",
+      file: "audio/ukuvula.mp3"
+    },
+    ukuzula: {
+      text: "Ukuzula – Wandering",
+      file: "audio/ukuzula.mp3"
+    },
+    ukusoma: {
+      text: "Ukusoma – Trial",
+      file: "audio/ukusoma.mp3"
+    },
+    ukubona: {
+      text: "Ukubona – Vision",
+      file: "audio/ukubona.mp3"
+    },
+    ukuvela: {
+      text: "Ukuvela – Emergence",
+      file: "audio/ukuvela.mp3"
+    }
+  };
+
+  let currentAudio = null;
+  const subtitle = document.getElementById('subtitle');
+
+  function playLayer(layer) {
+    const data = audioLayers[layer];
+    if (!data) return;
+
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+    currentAudio = new Audio(data.file);
+    currentAudio.play();
+    subtitle.textContent = data.text;
+  }
+
+  const ambient = new Audio("audio/ambient-loop.mp3");
+  ambient.loop = true;
+  ambient.volume = 0.4;
+  ambient.play();
+
+  function toggleAmbient() {
+    if (ambient.paused) {
+      ambient.play();
+    } else {
+      ambient.pause();
+    }
+  }
+</script>
+</body>
+</html>
+
