@@ -105,6 +105,8 @@
       justify-content: center;
       margin-bottom: 50px;
       animation: slideInUp 0.8s ease-out 0.4s both;
+      flex-direction: column;
+      align-items: stretch;
     }
     
     .toggle-container {
@@ -114,8 +116,6 @@
       border-radius: 20px;
       padding: 8px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      display: flex;
-      gap: 4px;
     }
     
     .toggle-btn {
@@ -463,60 +463,13 @@
         flex-direction: column;
       }
     }
-
-
-
-    .centered-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  padding: 2em;
-}
-
-.course-recursion {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-  margin-top: 2em;
-}
-
-.course-stage {
-  padding: 1em;
-  border-radius: 12px;
-  width: 80%;
-  margin: 0 auto;
-  box-shadow: 0 0 10px rgba(150, 150, 150, 0.2);
-}
-
-.course-stage.basic {
-  background-color: #e0f7fa;
-}
-.course-stage.intermediate {
-  background-color: #ffe0b2;
-}
-.course-stage.advanced {
-  background-color: #e1bee7;
-}
-
-.modal-title {
-  font-size: 1.6em;
-  font-weight: bold;
-}
-
-.modal-text p {
-  margin: 1em 0;
-  line-height: 1.6em;
-}
-
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <div class="logo">Stata Programming Academy</div>
-      <div class="tagline">Master statistical programming with world-class instruction</div>
+      <div class="tagline">Master statistical programming with <a href="programming/audio.html">world</a>-<a href="programming/translate.html">class</a> instruction</div>
       
       <div class="stats-bar">
         <div class="stat">
@@ -536,9 +489,10 @@
     
     <div class="course-toggle">
       <div class="toggle-container">
-        <button class="toggle-btn active" onclick="showCourse('basic', event)">Basic</button>
-        <button class="toggle-btn" onclick="showCourse('intermediate', event)">Intermediate</button>
-        <button class="toggle-btn" onclick="showCourse('advanced', event)">Advanced</button>
+<button class="toggle-btn active" onclick="showCourse('basic', event)">Basic</button>
+<button class="toggle-btn" onclick="showCourse('intermediate', event)">Intermediate</button>
+<button class="toggle-btn" onclick="showCourse('advanced', event)">Advanced</button>
+
       </div>
     </div>
     
@@ -548,40 +502,19 @@
   </div>
 
   <!-- Token Access Modal -->
-<!-- 🔐 Token Access Modal (Fractal Centered Flow) -->     
-<div id="token-modal" class="modal">
-  <div class="modal-content centered-modal">
-    <div class="modal-title">🔐 Premium Access Required</div>
-    <div class="modal-text">
-      <p>Enter your daily access <a href="programming/audio.html">token</a> <a href="programming/translate.html">to</a> <a href="programming/manifesto.html">unlock</a> exclusive resources.</p>
-    </div>
-
-    <!-- 🌀 Fractal Course Access Flow -->
-    <div class="course-recursion">
-      <div class="course-stage basic">
-        <h2>🌊 Basic Stata – <a href="programming/claude-incomplete.html">Nonself</a> ↝ Self</h2>
-        <p>📊 Data import, 📈 stats, 📁 org. Focus: *Local mastery.*</p>
+  <div id="token-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-title">🔐 Premium Access Required</div>
+      <div class="modal-text">
+        Enter your daily access token to <a href="programming/manifesto.html">unlock</a> exclusive course materials, assignments, and resources.
       </div>
-
-      <div class="course-stage intermediate">
-        <h2>🌀 Intermediate – <a href="programming/grok.html">Self</a> ↝ Transformation</h2>
-        <p>🔗 GitHub, 🔄 automation, 🌐 collab. Focus: *Remote coordination.*</p>
+      <input type="text" class="token-input" id="token-input" placeholder="ENTER TOKEN" maxlength="8">
+      <div class="modal-buttons">
+        <button class="close-btn" onclick="closeModal()">Cancel</button>
+        <button class="access-btn" onclick="validateToken()">Access Course</button>
       </div>
-
-      <div class="course-stage advanced">
-        <h2>🔁 Advanced – Transformed Self ↝ System ↝ Flourish</h2>
-        <p>💻 Shell, 🐍 Python, 📡 HPC. Focus: *Cosmic recursion + system ingestion.*</p>
-      </div>
-    </div>
-
-    <input type="text" class="token-input" id="token-input" placeholder="ENTER TOKEN" maxlength="8">
-    <div class="modal-buttons">
-      <button class="close-btn" onclick="closeModal()">Cancel</button>
-      <button class="access-btn" onclick="validateToken()">Access Course</button>
     </div>
   </div>
-</div>
-
 
   <script>
     const courses = {
@@ -598,7 +531,7 @@
           { icon: '🎓', text: 'Certificate of completion' }
         ],
         premium: {
-          title: '�� Premium Basic Resources',
+          title: '🎯 Premium Basic Resources',
           content: [
             '• Interactive coding exercises with auto-grading',
             '• 50+ practice datasets from real research',
@@ -776,10 +709,7 @@
     }
 
     // Initialize with basic course
-    document.addEventListener('DOMContentLoaded', function() {
-      const firstButton = document.querySelector('.toggle-btn');
-      showCourse('basic', { target: firstButton });
-    });
+    showCourse('basic');
 
     // Add some interactive effects
     document.addEventListener('mousemove', (e) => {
@@ -814,4 +744,4 @@
     updateDailyToken();
   </script>
 </body>    
-</html>
+</html>    
