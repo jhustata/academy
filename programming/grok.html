@@ -307,21 +307,23 @@
       backdrop-filter: blur(10px);
       z-index: 1000;
       animation: fadeIn 0.3s ease-out;
+      justify-content: center;
+      align-items: center;
     }
     
     .modal-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 24px;
       padding: 40px;
-      max-width: 500px;
+      max-width: 600px;
       width: 90%;
-      text-align: center;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     
     .modal-title {
@@ -335,6 +337,16 @@
       margin-bottom: 32px;
       opacity: 0.9;
       line-height: 1.6;
+    }
+    
+    .modal-text a {
+      color: #fbbf24;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .modal-text a:hover {
+      color: #f59e0b;
     }
     
     .token-input {
@@ -371,6 +383,11 @@
       transition: all 0.3s ease;
     }
     
+    .close-btn:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
     .access-btn {
       background: linear-gradient(135deg, #10b981, #059669);
       border: none;
@@ -380,6 +397,11 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+    }
+    
+    .access-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
     }
     
     .premium-content {
@@ -432,6 +454,52 @@
       50% { opacity: 0.8; }
     }
     
+    /* Fractal Course Flow Styles */
+    .course-recursion {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+      margin: 2em 0;
+      width: 100%;
+    }
+    
+    .course-stage {
+      padding: 1.5em;
+      border-radius: 12px;
+      width: 90%;
+      margin: 0 auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      color: #1e293b;
+    }
+    
+    .course-stage:hover {
+      transform: translateY(-4px);
+    }
+    
+    .course-stage.basic {
+      background: #e0f7fa;
+    }
+    
+    .course-stage.intermediate {
+      background: #ffe0b2;
+    }
+    
+    .course-stage.advanced {
+      background: #e1bee7;
+    }
+    
+    .course-stage h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+    }
+      .course-stage p {
+        font-size: 1rem;
+        line-height: 1.5;
+        opacity: 0.9;
+      }
+    
     @media (max-width: 768px) {
       .container {
         padding: 16px;
@@ -462,54 +530,16 @@
       .cta-section {
         flex-direction: column;
       }
+      
+      .modal-content {
+        padding: 24px;
+        max-width: 90%;
+      }
+      
+      .course-stage {
+        width: 100%;
+      }
     }
-
-
-
-    .centered-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  padding: 2em;
-}
-
-.course-recursion {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-  margin-top: 2em;
-}
-
-.course-stage {
-  padding: 1em;
-  border-radius: 12px;
-  width: 80%;
-  margin: 0 auto;
-  box-shadow: 0 0 10px rgba(150, 150, 150, 0.2);
-}
-
-.course-stage.basic {
-  background-color: #e0f7fa;
-}
-.course-stage.intermediate {
-  background-color: #ffe0b2;
-}
-.course-stage.advanced {
-  background-color: #e1bee7;
-}
-
-.modal-title {
-  font-size: 1.6em;
-  font-weight: bold;
-}
-
-.modal-text p {
-  margin: 1em 0;
-  line-height: 1.6em;
-}
-
   </style>
 </head>
 <body>
@@ -547,41 +577,39 @@
     </div>
   </div>
 
-  <!-- Token Access Modal -->
-<!-- 🔐 Token Access Modal (Fractal Centered Flow) -->     
-<div id="token-modal" class="modal">
-  <div class="modal-content centered-modal">
-    <div class="modal-title">🔐 Premium Access Required</div>
-    <div class="modal-text">
-      <p>Enter your daily access <a href="programming/audio.html">token</a> <a href="programming/translate.html">to</a> <a href="programming/manifesto.html">unlock</a> exclusive resources.</p>
-    </div>
-
-    <!-- 🌀 Fractal Course Access Flow -->
-    <div class="course-recursion">
-      <div class="course-stage basic">
-        <h2>🌊 Basic Stata – <a href="programming/claude-incomplete.html">Nonself</a> ↝ Self</h2>
-        <p>📊 Data import, 📈 stats, 📁 org. Focus: *Local mastery.*</p>
+  <!-- Token Access Modal (Fractal Centered Flow) -->
+  <div id="token-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-title">🔐 Premium Access Required</div>
+      <div class="modal-text">
+        <p>Enter your daily access <a href="programming/audio.html">token</a> <a href="programming/translate.html">to</a> <a href="programming/manifesto.html">unlock</a> exclusive resources.</p>
       </div>
 
-      <div class="course-stage intermediate">
-        <h2>🌀 Intermediate – <a href="programming/grok.html">Self</a> ↝ Transformation</h2>
-        <p>🔗 GitHub, 🔄 automation, 🌐 collab. Focus: *Remote coordination.*</p>
+      <!-- 🌀 Fractal Course Access Flow -->
+      <div class="course-recursion">
+        <div class="course-stage basic">
+          <h2>🌊 Basic Stata – Nonself ↝ Self</h2>
+          <p>📊 Data import, 📈 stats, 📁 org. Focus: <em>Local mastery.</em></p>
+        </div>
+
+        <div class="course-stage intermediate">
+          <h2>🌀 Intermediate – Self ↝ Transformation</h2>
+          <p>🔗 GitHub, 🔄 automation, 🌐 collab. Focus: <em>Remote coordination.</em></p>
+        </div>
+
+        <div class="course-stage advanced">
+          <h2>🔁 Advanced – Transformed Self ↝ System ↝ Flourish</h2>
+          <p>💻 Shell, 🐍 Python, 📡 HPC. Focus: <em>Cosmic recursion + system ingestion.</em></p>
+        </div>
       </div>
 
-      <div class="course-stage advanced">
-        <h2>🔁 Advanced – Transformed Self ↝ System ↝ Flourish</h2>
-        <p>💻 Shell, 🐍 Python, 📡 HPC. Focus: *Cosmic recursion + system ingestion.*</p>
+      <input type="text" class="token-input" id="token-input" placeholder="ENTER TOKEN" maxlength="8">
+      <div class="modal-buttons">
+        <button class="close-btn" onclick="closeModal()">Cancel</button>
+        <button class="access-btn" onclick="validateToken()">Access Course</button>
       </div>
-    </div>
-
-    <input type="text" class="token-input" id="token-input" placeholder="ENTER TOKEN" maxlength="8">
-    <div class="modal-buttons">
-      <button class="close-btn" onclick="closeModal()">Cancel</button>
-      <button class="access-btn" onclick="validateToken()">Access Course</button>
     </div>
   </div>
-</div>
-
 
   <script>
     const courses = {
@@ -598,7 +626,7 @@
           { icon: '🎓', text: 'Certificate of completion' }
         ],
         premium: {
-          title: '�� Premium Basic Resources',
+          title: '✨ Premium Basic Resources',
           content: [
             '• Interactive coding exercises with auto-grading',
             '• 50+ practice datasets from real research',
@@ -674,8 +702,6 @@
       });
       event.target.classList.add('active');
 
-      
-    
       // Generate course content
       const content = `
         <div class="course-card">
@@ -738,7 +764,7 @@
     }
 
     function requestAccess() {
-      document.getElementById('token-modal').style.display = 'block';
+      document.getElementById('token-modal').style.display = 'flex';
     }
 
     function closeModal() {
@@ -754,8 +780,6 @@
       if (token === validToken) {
         document.getElementById(`premium-content-${currentCourse}`).style.display = 'block';
         closeModal();
-        
-        // Show success message
         alert('🎉 Access granted! Premium materials are now visible below.');
       } else {
         alert('❌ Invalid token. Please contact your instructor for today\'s access code.');
@@ -767,8 +791,7 @@
     }
 
     function accessMaterials() {
-      // Simulate navigation to course materials
-      window.open('data:text/html,<html><body style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center;"><h1>🎯 Course Materials Portal</h1><p>Welcome to your exclusive course materials!</p><div style="margin: 40px 0;"><h3>📚 Available Resources:</h3><ul style="text-align: left; max-width: 400px; margin: 20px auto;"><li>Interactive Stata notebooks</li><li>Dataset collection (100+ files)</li><li>Video lecture series</li><li>Assignment templates</li><li>Research project guidelines</li></ul></div><p><em>This is a preview of your premium content area.</em></p></body></html>', '_blank');
+      window.open('data:text/html,<html><body style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2); color: white; text-align: center;"><h1>🎯 Course Materials Portal</h1><p>Welcome to your exclusive course materials!</p><div style="margin: 40px 0px;"><h3>📚 Available Resources:</h3><ul style="text-align: left; max-width: 400px; margin: 20px auto;"><li>Interactive Stata notebooks</li><li>Dataset collection (100+ files)</li><li>Video lecture series</li><li>Assignment templates</li><li>Research project guidelines</li></ul></div></li></ul></p><p><em>This is a preview of your premium content area.</em></p></body></html></p></html>', '_blank');
     }
 
     function joinDiscord() {
@@ -785,7 +808,7 @@
     document.addEventListener('mousemove', (e) => {
       const cards = document.querySelectorAll('.course-card');
       cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
+        const rect = cards.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
@@ -813,5 +836,5 @@
     }
     updateDailyToken();
   </script>
-</body>    
+</body>
 </html>
